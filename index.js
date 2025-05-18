@@ -1,3 +1,4 @@
+// index.js
 const express = require('express');
 const cors = require('cors');
 const dotenv = require('dotenv');
@@ -46,15 +47,3 @@ app.post('/api/chat', async (req, res) => {
 
     res.json({ reply: response.data.choices[0].message.content.trim() });
   } catch (error) {
-    console.error('Fout bij OpenAI-aanroep:', error.response?.data || error.message);
-    res.status(500).json({ error: 'OpenAI-verzoek mislukt.' });
-  }
-});
-
-app.get('/', (req, res) => {
-  res.send('✅ Aivie backend draait correct');
-});
-
-app.listen(PORT, () => {
-  console.log(`✅ Aivie backend actief op poort ${PORT}`);
-});
