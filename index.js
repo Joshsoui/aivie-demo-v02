@@ -1,10 +1,3 @@
-// VAN:
-import express from 'express';
-import cors from 'cors';
-import dotenv from 'dotenv';
-import axios from 'axios';
-
-// NAAR:
 const express = require('express');
 const cors = require('cors');
 const dotenv = require('dotenv');
@@ -13,8 +6,6 @@ const axios = require('axios');
 dotenv.config();
 
 const app = express();
-
-// Render stelt zelf de poort in via process.env.PORT
 const PORT = process.env.PORT || 3003;
 
 app.use(cors());
@@ -53,8 +44,7 @@ app.post('/api/chat', async (req, res) => {
       }
     );
 
-    const aiReply = response.data.choices[0].message.content.trim();
-    res.json({ reply: aiReply });
+    res.json({ reply: response.data.choices[0].message.content.trim() });
   } catch (error) {
     console.error('Fout bij OpenAI-aanroep:', error.response?.data || error.message);
     res.status(500).json({ error: 'OpenAI-verzoek mislukt.' });
