@@ -57,5 +57,5 @@ app.get('/', (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`✅ Aivie backend actief op poort ${PORT}`);
+  console.log(`🟢 Aivie backend succesvol gestart op poort ${PORT}`);
 });
