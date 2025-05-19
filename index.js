@@ -60,6 +60,6 @@ app.post('/api/chat', async (req, res) => {
 });
 
 app.listen(PORT, () => {
-console.log(`🟢 Aivie backend draait succesvol op poort ${PORT}`);
+console.log(`🟢 Aivie backend draait live op poort ${PORT}`);
 });
 // Forceer commit
