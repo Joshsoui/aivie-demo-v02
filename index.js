@@ -9,8 +9,15 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 3003;
 
-app.use(cors());
+app.use(cors({
+  origin: '*', // voor productie: vervang * door jouw Netlify-URL
+}));
+
 app.use(express.json());
+
+app.get('/', (req, res) => {
+  res.send('✅ Aivie backend draait correct');
+});
 
 app.post('/api/chat', async (req, res) => {
   const { message } = req.body;
@@ -27,8 +34,7 @@ app.post('/api/chat', async (req, res) => {
         messages: [
           {
             role: 'system',
-            content:
-              'Je bent een professionele jeugd- en gezinsprofessional. Je antwoorden zijn empathisch, deskundig en helder geformuleerd.',
+            content: 'Je bent een professionele jeugd- en gezinsprofessional. Je antwoorden zijn empathisch, deskundig en helder geformuleerd.',
           },
           {
             role: 'user',
@@ -47,15 +53,11 @@ app.post('/api/chat', async (req, res) => {
 
     res.json({ reply: response.data.choices[0].message.content.trim() });
   } catch (error) {
-    console.error('Fout bij OpenAI-aanroep:', error.response?.data || error.message);
+    console.error('❌ Fout bij OpenAI-aanroep:', error.response?.data || error.message);
     res.status(500).json({ error: 'OpenAI-verzoek mislukt.' });
   }
 });
 
-app.get('/', (req, res) => {
-  res.send('✅ Aivie backend draait correct');
-});
-
 app.listen(PORT, () => {
-  console.log(`🟢 Aivie backend succesvol gestart op poort ${PORT}`);
+  console.log(`🟢 Aivie backend actief op poort ${PORT}`);
 });
