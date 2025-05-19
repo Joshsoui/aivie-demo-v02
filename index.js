@@ -10,9 +10,8 @@ const app = express();
 const PORT = process.env.PORT || 3003;
 
 app.use(cors({
-  origin: '*', // voor productie: vervang * door jouw Netlify-URL
+  origin: '*', // of vervang '*' door jouw Netlify-URL voor veiligheid
 }));
-
 app.use(express.json());
 
 app.get('/', (req, res) => {
@@ -34,7 +33,8 @@ app.post('/api/chat', async (req, res) => {
         messages: [
           {
             role: 'system',
-            content: 'Je bent een professionele jeugd- en gezinsprofessional. Je antwoorden zijn empathisch, deskundig en helder geformuleerd.',
+            content:
+              'Je bent een professionele jeugd- en gezinsprofessional. Je antwoorden zijn empathisch, deskundig en helder geformuleerd.',
           },
           {
             role: 'user',
@@ -51,7 +51,8 @@ app.post('/api/chat', async (req, res) => {
       }
     );
 
-    res.json({ reply: response.data.choices[0].message.content.trim() });
+    const aiReply = response.data.choices[0].message.content.trim();
+    res.json({ reply: aiReply });
   } catch (error) {
     console.error('❌ Fout bij OpenAI-aanroep:', error.response?.data || error.message);
     res.status(500).json({ error: 'OpenAI-verzoek mislukt.' });
