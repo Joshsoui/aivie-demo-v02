@@ -1,5 +1,6 @@
 {
-  "name": "aivie-backend",
+  "name": "aivie-backend", 
+"dummy":"trigger git",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
