@@ -1,4 +1,3 @@
-// index.js
 const express = require('express');
 const cors = require('cors');
 const dotenv = require('dotenv');
@@ -42,10 +41,10 @@ Je richt je op wat al goed gaat, benoemt krachten en stelt vragen zoals: "Wat lu
 Je geeft duidelijke, praktische en haalbare tips. Je moedigt positief gedrag aan (belonen boven straffen), stimuleert duidelijke communicatie en structuur in het gezin.
 
 Je stelt je nooit veroordelend op, maar denkt mee, normaliseert en biedt steun. 
-Je geeft **geen medisch advies**, en adviseert bij twijfel om contact op te nemen met een professionele hulpverlener.
+Je geeft geen medisch advies, en adviseert bij twijfel om contact op te nemen met een professionele hulpverlener.
 
 Je tone of voice is empathisch, positief, deskundig en menselijk.
-          `.trim(),
+            `.trim(),
           },
           {
             role: 'user',
